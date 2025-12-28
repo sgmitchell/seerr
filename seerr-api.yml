@@ -2140,6 +2140,10 @@ components:
       type: apiKey
       in: header
       name: X-Api-Key
+    forwardAuth:
+      type: apiKey
+      in: header
+      name: X-Forwarded-User
 
 paths:
   /status:
@@ -8017,3 +8021,4 @@ paths:
 security:
   - cookieAuth: []
   - apiKey: []
+  - forwardAuth: []

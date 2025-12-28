@@ -21,6 +21,8 @@ export const checkUser: Middleware = async (req, _res, next) => {
     }
 
     user = await userRepository.findOne({ where: { id: userId } });
+  } else if (req.header('X-Forwarded-User')) {
+    user = await getRepository(User).findOne({ where: { email: req.header('X-Forwarded-User') } });
   } else if (req.session?.userId) {
     const userRepository = getRepository(User);
 
